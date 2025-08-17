@@ -1,0 +1,29 @@
+//  Pass by value (Truyền theo giá trị)
+// 1. Sao chép giá trị của biến
+// 2. Truyền bản sao vào bên trong hàm
+// * Đặc điểm: gán lại tham số trong hàm, không làm thay đổi biến bến ngoài hàm.Sao
+
+// Example of Pass by Value
+function changevalue (x) {
+   x = 20;
+}
+
+let x = 10;
+changevalue(x);
+console.log(x); // Output: 10
+
+// Pass by reference (Truyền theo tham chiếu)
+// Truyền trực tiếp tham chiếu của biến vào bên trong hàm.
+// * Đặc điểm: gán lại tham số trong hàm, làm thay đổi biến bên ngoài hàm.
+// Lưu ý: Javascript không hỗ trợ truyền tham chiếu với kiểu dữ liệu nguyên thủy (primitive types) như number, string, boolean, null, undefined, symbol. Chỉ hỗ trợ với kiểu dữ liệu phức tạp (complex types) như object, array, function. Tóm gọn, pass by reference không có trong ngôn ngữ Javascripts.
+// Example of Pass by Reference
+function changeObject(obj) 
+{
+   obj = {name: "Bob"}; // Không thay đổi đối tượng gốc => không phải pass by reference
+   // obj.name = "John";
+}
+let person = {
+   name: "Jane"
+};
+changeObject(person);
+console.log(person.name); // Output: Jane

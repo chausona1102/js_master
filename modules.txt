@@ -1,0 +1,5 @@
+// Modules
+
+import logger, {TYPE_ERROR, TYPE_LOG, TYPE_WARN}from './logger.js';
+
+logger('Message:....', TYPE_ERROR);

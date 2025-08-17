@@ -1,0 +1,22 @@
+# Scope - Phạm vi
+- Các loại phạm vi:
+	- Global - toàn cầu
+	- Code block - khối mã: let, const
+		=> var tenbien => nhảy ra ngoài 1 bậc
+{
+ var name = "sona"
+}
+console.log(name); // sona => biến name là biến global
+	- Local scope - hàm: var, function
+function logger() {
+   var name = "sona";
+   console.log(name) // "sona"
+}
+console.log(name) // undefined
+- Khi gọi mỗi hàm luôn có 1 phạm vi mới được tạo ra
+- Các hàm có thể truy cập các biến được khai báo trong phạm vi của nó và bên ngoài nó
+- Cách thức một biến được truy cập
+- Khi nào một biến bị xóa khỏi bộ nhớ?
+	- Biến toàn cầu?
+	- Biến trong code block & trong hàm?
+	- Biến trong hàm được tham chiếu bởi 1 hàm?

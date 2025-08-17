@@ -1,0 +1,44 @@
+// This - trỏ đối tượng hiện tại
+# Đặc tính
+    1. Trong một phương thức, this tham chiếu tới đối tượng truy cặp phương thức (đối tượng trước dấu.).
+    2. Đứng ngoài phương thức, this tham chiếu tới đối tượng global
+# Lưu ý:
+    . This trong hàm tạo là đại điện cho đối tượng sẽ được tạo
+    . This trong một hàm là undefined khi ở strict mode
+    . Các phương thức bind(), call(), apply() có thể tham chiếu this tới đối tượng khác.
+const Iphone7 = {
+   name: "Iphone 7",
+   price: 200,
+   color: "pink",
+   weight: 300,
+   getName() {
+      return this.name;
+   },
+   getPrice() {
+      return this.price;
+   },
+   getColor() {
+      return this.color;
+   },
+   getWeight() {
+      return this.weight;
+   },
+   getInfo() {
+      return this;
+   }
+
+}
+// console.log(Iphone7.getInfo());
+
+function Car(name, price, weight) {
+   this.name = name;
+   this.price = price;
+   this.weight = weight;
+   this.run = function() {
+      console.log("Car is running: ...", this); // this is the current object
+   }
+}
+
+const mercedes = new Car("Mercedes", 1000, 2000);
+
+console.log(mercedes.run());

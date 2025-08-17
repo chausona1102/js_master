@@ -1,0 +1,65 @@
+## Lythuyet
+- Fn.call() giúp gọi hàm và bind this tới đối tượng khác, mặc định this là window object
+- Fn.call() không trả ra hàm mới, nó gọi luôn hàm sau khi bind this (Fn.bind() thì chỉ bind this nhưng không gọi hàm)
+- Fn.call() dùng để mượn hàm - function borrowing
+- Fn.call() có thể dùng để kế thừa properties & method từ 1 Constructor khác
+
+"use strict";
+
+const teacher = {
+   firstname: "John",
+   lastname: "Doe"
+}
+
+const me = {
+   firstname: "So",
+   lastname: "Na",
+   showfullname() {
+      console.log(`${this.firstname} ${this.lastname}`);
+   }
+}
+
+me.showfullname.call(teacher); // John Doe
+
+## Example 
+"use strict";
+
+const teacher = {
+   firstname: "John",
+   lastname: "Doe"
+}
+
+const me = {
+   firstname: "So",
+   lastname: "Na",
+   showfullname() {
+      console.log(`${this.firstname} ${this.lastname}`);
+   }
+}
+
+me.showfullname.call(teacher); // John Doe
+
+function logger() {
+   Array.prototype.forEach.call(arguments, item => {
+      console.log(item); 
+   });
+}
+
+logger("Ford", "Chevrolet", "Toyota");
+
+"use trict";
+
+function logger() {  
+   const arr = Array.prototype.slice.call(arguments)
+   // console.log(arr.join(', '));
+   arr.forEach(item => console.log(item))
+}
+logger("Ford", "Chevrolet", "Toyota");
+
+"use trict";
+
+function logger() {  
+   const arr = Array.from(arguments);
+   console.log(arr);
+}
+logger("Ford", "Chevrolet", "Toyota");

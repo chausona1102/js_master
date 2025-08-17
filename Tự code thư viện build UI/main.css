@@ -1,0 +1,44 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dfdfdf;
+}
+
+#heading {
+    width: auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: #dede;
+    color: rgb(216, 106, 210);
+    border: 2px solid #ccc;
+    box-shadow: 8px 8px 2px 1px #ccc;
+}
+
+#heading:hover {
+    transform: translate(12px, 12px);
+    box-shadow: none;
+    cursor: cell;
+}
+
+#btn {
+    position: absolute;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: .4rem .8rem;
+    transform: translate(0px, 100px);
+    background-color: #dede;
+}
+#btn:hover {
+    cursor: pointer;
+    background-color: #fff;
+}
+#btn:active {
+    transform: translate(2px, 102px);
+}
+
+.animation {
+    animation: toBot 1s linear;
+}

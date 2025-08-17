@@ -1,0 +1,7 @@
+- Chế độ nghiêm ngặt. Báo lỗi với code có thể nhầm lẫn.
+"use strict";
+function sum(a,a) {  
+    return a + a; // This will cause an error due to duplicate parameter names
+}
+fullname = "John Doe"; // fullname is note defined 
+console.log(fullname); // This will cause an error because 'fullname' is not defined in the current scope

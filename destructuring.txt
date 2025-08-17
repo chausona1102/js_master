@@ -1,0 +1,27 @@
+// Destructuring - Phân rã 
+// Arrya
+// var array = ['Javascript', 'PHP', 'Ruby'];
+// var [a, ...rest] = array;
+// console.log(a);
+// console.log(rest)
+// Object
+
+// var course = {
+//     name: 'Sona',
+//     price: 1000,
+//     children: {
+//         name: 'Javascript',
+//         price: 1000
+//     }
+// };
+
+// var { name: parrentName, children: {name: childrenName}} = course;
+// console.log(parrentName, childrenName);
+var course = {
+    name: 'Sona',
+    price: 1000,
+    // descripion: 2
+};
+
+var {name, descripion = 'default description'} = course;
+console.log(name, descripion)

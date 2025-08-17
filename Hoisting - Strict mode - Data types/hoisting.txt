@@ -1,0 +1,4 @@
+Với 
++ var: biến được hoisting lên trên và được gán giá trị undefined trước khi nó được được khai báo.
++ let: biến được hoisting lên trên và được đưa vào "Temp Dead Zone" và không sử dụng được đến khi nó được khai báo.
++ function có thể sử dụng trước khi được khai báo.

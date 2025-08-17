@@ -1,0 +1,52 @@
+# Closure
+Là một hàm có thể ghi nhớ nơi nó được tạo và truy cập được biến ở bên ngoài phạm vi của nó.
+
+## Ứng dụng
+-- Viết code ngắn gọn hơn
+-- Biểu diễn, ứng dụng tính Private trong OOP
+
+## Tóm tắt
+
+## Lưu ý
+- Biến được tham chiếu (refer) trong closure sẽ không được xóa khỏi bộ nhớ khi hàm cha thực thi xong.
+- Các khái niệm Javascript nâng cao rất dễ gây nhầm lẫn.
+
+// Closure là một hàm có thể truy cập biến từ phạm vi bên ngoài của nó ngay cả sau khi hàm bên ngoài đã hoàn thành thực thi.
+function createLogger(namespace) {
+  function logger(message) {
+    console.log(`[${namespace}]`, ...message);
+  }
+  return logger;
+}
+
+// Sử dụng closure để tạo logger với namespace cụ thể
+const infoLogger = createLogger('INFO');
+const errorLogger = createLogger('ERROR');
+const debugLogger = createLogger('DEBUG');
+// Gọi logger với các thông điệp khác nhau
+infoLogger('This is an info message');
+errorLogger('This is an error message');
+debugLogger('This is a debug message');
+
+function createStorage(key) {
+  const store = JSON.parse(localStorage.getItem(key)) ?? {};
+  const storage = {
+    get(key) {
+      return store[key];
+    },
+    set(key, value) {
+      store[key] = value;
+      localStorage.setItem(key, JSON.stringify(store));
+    },
+    delete(key) {
+      delete store[key];
+      localStorage.setItem(key, JSON.stringify(store));
+    }
+  }
+  return storage;
+}
+const profileStorage = createStorage('profile');
+console.log(profileStorage.set('name')); // undefined
+profileStorage.set('name', 'John Doe');
+console.log(profileStorage.get('name')); // John Doe
+locolStorage.clear()

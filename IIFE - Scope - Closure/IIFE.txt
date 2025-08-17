@@ -1,0 +1,18 @@
+# IIFE - Immediately Invoked Function Expression
+Im: ngay lập tức
+In: Gọi
+Func: phương thức, hàm
+Exp: biểu thức 
+-- IIFE là một function expression được gọi ngay lập tức - là một biểu thức tạo ra một hàm và được gọi ngay lập tức.
+Tên gọi khác: Self-Invoking Function
+
+1. IIFE trông như nào?
+(function() {})()
+(function() {
+    console.log("IIFE executed");
+})();
+(() => {}) ()	-- Arrow function
+2.  Dùng dấu ";" trước IIFE hoặc không nếu đã có trước đó
+3. IIFE là hàm private
+4. Tại sao lại dùng IIFE
+5. 

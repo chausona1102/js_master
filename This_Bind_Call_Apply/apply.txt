@@ -1,0 +1,65 @@
+
+"use strict";
+
+const teacher = {
+   firstname: "Minh",
+   lastname: "Thu"
+}
+
+function greet(greeting, message) {
+   return `${greeting} ${this.firstname} ${this.lastname}. ${message}`;
+}
+// console.log(greet.apply(teacher, ['Hello', 'You are welcome!']));
+console.log(greet.call(teacher, 'Hello', 'You are welcome!'));
+
+// The example uses the apply method to borrow other object's method.
+"use strict";
+
+const teacher = {
+   firstname: "Minh",
+   lastname: "Thu",
+   isOnline: false,
+   goOnline() {
+      this.isOnline = true;
+      console.log(`${this.firstname} ${this.lastname} is online.`);
+   },
+   goOffline() {
+      this.isOnline = false;
+      console.log(`${this.firstname} ${this.lastname} is offline.`);
+   }
+}
+
+
+const student = {
+   firstname: "So",
+   lastname: "Na",
+   isOnline: false,
+}
+
+console.log("Teacher status:")
+console.log("Online: ",teacher.isOnline)
+teacher.goOnline();
+console.log("Online: ",teacher.isOnline)
+console.log("------------")
+console.log("Student status:")
+console.log("Online: ",student.isOnline)
+teacher.goOnline.apply(student);
+console.log("Online: ",student.isOnline)
+
+# Example: Extend Object
+function Animal(name, weight) {
+   this.name = name;
+   this.weight = weight;
+}
+
+function Dog() {
+   Animal.apply(this, arguments)
+   this.sound = function() {
+      console.log("Woof!");
+   }
+}
+
+const dog = new Dog("Rex", 20);
+dog.sound()
+console.log(dog.name); // "Rex"
+console.log(dog.weight); // 20

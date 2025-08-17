@@ -1,0 +1,10 @@
+// Template Literals
+// Multi-line String
+
+const courseName = 'Javascript';
+const description = 'Course name: ';
+console.log(description + courseName );
+console.log(`${description} ${courseName}`)
+
+console.log(`hi I'm : \${}`);
+console.log(`line1 \n line2`)

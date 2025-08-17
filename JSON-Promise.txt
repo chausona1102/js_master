@@ -1,0 +1,146 @@
+// JSON JavaScript Object Notation
+// -- Event Listener
+// -- JSON
+// -- Promise
+//    - Sync / Async
+//      + Sync: Default for JS
+//      + Async: setTimeout, setInterval, fetch, XHLHttprequest, 
+//      File reading, request animation frame
+
+// var json = '["Javascript", "PHP"]';  
+// var json = '{"name":"Sona", "age":21}';
+
+// var number = '1';
+// console.log(JSON.parse(json));
+// console.log(JSON.parse(number))
+
+// console.log(JSON.stringify("hi"));
+// Promise là khái niệm sinh ra để giúp các bạn xử lý thao tác bất đồng bộ. Trước khi không có Promise thì coder thường dùng call back để xử lý. Điều này có thể dẫn đến call back hell (có nhìn - các dòng code bị rối). -> Dùng promise để khắc phục -> Code dễ nhìn.
+// 3 trạng thái của Promise là
+//      Pending: trạng thái mà promise vừa được tạo chưa được giải quyết hoặc bị từ chối
+//      Fulfilled: trạng thái xảy ra khi Promise được giải quyết thành công. Điều này có   nghĩa là hàm resolve được gọi và trả về kết quả mong đợi.
+//      Rejected: trạng thái xảy ra khi Promise bị từ chối. Điều này xảy ra khi reject được gọi hoặc có ngoại lệ xảy ra khi thực thi promise.
+// Để tạo một Promise thì sử dụng từ khóa new Promise. Trong contructor khai báo function(resolve, reject) => ? resolve() : reject().
+// Để sử dụng promise có thể sử dụng phương thức then, catch. Then -> thực hiện khi promise trả về resolve. Promise trả về reject() -> catch() - bẫy bắt lỗi. finally(không cần thiết - giống một thông báo khi promise thực hiện thành công).  
+// Tính chất của Promise
+//      Chain: chuỗi - vd:
+        // var promise = new Promise(
+        //     function (resolve, reject) { 
+        //         // fake call API
+        //         resolve();
+        //         // reject('Co loi');
+        //     }
+        // );
+        // promise
+        //         .then(function () { => Hàm nhận được resolve từ promise thì thực thi trả về 1 => cho then tiếp theo. 
+        //             return 1;
+        //         })
+        //         .then(function(data){ => Nhận data - return 1; từ .then đầu tiên và in ra data sau đó trả về 2. => Giống với call back hell(goku power skill:v)
+        //             console.log(data);
+        //             return 2;
+        //         })                
+        //         .then(function(data){
+        //             console.log(data);
+        //             return 3;
+        //         })
+        //         .then(function(data){
+        //             console.log(data);
+        //         })
+    //  Nếu như .then đầu tiên không trả về gì thì .then thứ 2 sẽ được thực thi. Nếu .then đầu tiên trả về gì đó như new Promise thì có delay bao nhiêu thì .then thứ 2 vẫn phải đợi.
+
+
+
+
+// promise
+//     .then(function(courese){
+//         console.log(courese);    
+//     })
+//     .catch(function(error){
+//         console.log(error);
+//     })
+//     .finally(function () {  
+//         console.log('Done');
+//     }); 
+// vd: In ra số 1 2 3 sau mỗi 1s mà không sử dụng setInterval().
+// =>
+// function sleep(ms) {
+//     return new Promise(function (resolve) {
+//         setTimeout(resolve, ms);
+//     })    
+// }
+
+// sleep(1000)
+//         .then(function () {
+//             console.log(1);
+//             return sleep(1000);
+//         })
+//         .then(function () {
+//             console.log(2);
+//             return sleep(1000);
+//         })
+//         .then(function () {  
+//             console.log(3);
+//             return sleep(1000);
+//         })
+//         .catch(()=> console.log('loi'))
+//         .finally(()=> console.log('done'));
+
+
+function sleep(ms) {  
+    return new Promise(function(resolve){
+        setTimeout(resolve, ms);
+    });
+}
+
+sleep(1000)
+    .then(function () {  
+        console.log(1);
+        return sleep(1000);
+    })
+    .then(function () {
+        console.log(2);
+        return sleep(1000);
+    })
+    .then(function () {
+        console.log(3);
+        return new Promise(function (resolve, reject) {  
+            reject('Co loi');
+        });
+    })
+    .then(function () {
+        console.log(4);
+        return sleep(1000);
+    })
+    .catch(function (err) { console.log(err) });
+
+
+// 1. Promise.resolve
+// 2. Promise.reject
+// 3. Promise.all
+// var promise = new Promise(function(resolve,reject){
+//     resolve('Success!');
+// })
+
+// promise
+//         .then(function (result) {  
+//             console.log(result);
+//         })
+
+var promise1 = new Promise(function(resolve, reject){
+    setTimeout(() => {
+        resolve([1]);
+    }, 2000);
+});
+
+var promise2 = new Promise(function(resolve, reject){
+    setTimeout(() => {
+        resolve([2,3]);
+    }, 5000);
+}); 
+
+Promise.all([promise1,promise2])
+        .then(function (param) {  
+            var mergeParam = [].concat.apply([], param);
+            console.log(mergeParam);
+        })
+Nếu 1 trong 2 promise bị lõi thì Promise.all =>catch

@@ -1,0 +1,14 @@
+// what're deference between 
+// 1. Var / Let, Const: Scope, Hosting
+// 2. Const / Var, let: Assignment
+
+{
+    var course = "JS basic";
+}
+// console.log(course); 
+
+const cur = {
+    name: 'Js basic'
+}
+cur.name = 'PHP';
+console.log(cur.name)

@@ -1,0 +1,10 @@
+// Classes
+
+class Course {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+}
+const js = new Course('Js',100);
+console.log(js)

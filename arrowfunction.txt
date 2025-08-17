@@ -1,0 +1,37 @@
+// Arrow function
+// let loga= (log) => {
+//     return log;
+// }
+
+// => arrow fn khoong co context và không thể dùng nó để làm function contructor.
+// Declaration function
+// function logger(log) {  return log;}; 
+// Expression function 
+// let log = function (log) {  return log; };
+//  sum a + b
+
+// const sum = (a,b) => a + b;
+// console.log(sum(2,3));
+
+// const sumchange = (a,b) => ({
+//     a: a, b: b, sum: a + b
+// });
+// console.log(sumchange(1,2));
+
+// const logger = log => log;
+// console.log(logger('hi'));
+// const obj = {
+//     name: 'Javascript Basic',
+//     getName: function () {  
+//         return this.name;
+//     }
+// };
+// console.log(obj.getName());
+
+const Course = function (name, price) {  // <= không thể dùng arrow function.
+    this.name = name,
+    this.price = price
+};
+
+const jsCouse = new Course('Js', 1000);
+console.log(jsCouse)

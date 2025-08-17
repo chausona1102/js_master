@@ -1,0 +1,83 @@
+// Bind - ràng buộc
+
+this.firstname = "Minh";
+this.lastname = "Nguyen";
+
+const teacher = {
+   firstname: "Nguyen",
+   lastname: "Van",
+   getFullName: function() {
+      return `${this.firstname} ${this.lastname}`;
+   }
+}
+
+console.log(teacher.getFullName()); // "Nguyen Van"
+
+const getTeacherName = teacher.getFullName;// => Trỏ tới cùng 1 vùng nhớ
+console.log(getTeacherName()); // undefined undefined
+console.log(getTeacherName === teacher.getFullName); // "true"
+console.log(teacher.getFullName.bind(this)()); // "Minh Nguyen"
+console.log(getTeacherName.bind(teacher)()); // "Nguyen Van"
+// this {name: "Minh", lastname: "Nguyen"}
+// Example
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
+console.log($('#heading'));
+
+
+
+// Example
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
+
+const app = (() => {
+   const cars = ['BMW'];
+   const submit = $('#submit');
+   const input = $('#input');
+   const root = $('#list');
+   return {
+      add(car) {
+         cars.push(car);
+      },
+      delete(index) {
+         cars.splice(index, 1);
+      },
+      render() {
+         const html = cars.map((car, index) => {
+            return `<li>${car}
+            <span class="delete" data-index="${index}">x</span>
+            </li>`;
+         }).join('');
+         root.innerHTML = html;
+      },
+      handleDelete(event) {
+         const btnDel = event.target.closest('.delete');
+         if(btnDel) {
+            const index = btnDel.dataset.index;
+            this.delete(index);
+            this.render();
+         }
+      },
+      init() {
+         submit.onclick = () => {
+            const car = input.value;
+            if(input.value !== ''){
+               this.add(car);
+               this.render();
+            }else {
+               return;
+            }
+         }
+
+         root.onclick = this.handleDelete.bind(this);
+
+         this.render()
+      }
+      
+   }
+})();
+
+
+app.init();

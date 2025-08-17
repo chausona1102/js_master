@@ -1,0 +1,18 @@
+## Value types & Reference types
+
+### 1. Value types (Primitive data types) - du lieu nguyen thuy
+    - String
+    - Number
+    - Boolean
+    - BigInt
+    - Symbol
+    - undefined
+    - null
+### 2. Reference types (Non-Primitive data types) - kieu tham chieu
+    - Object
+    - Array
+    - Function
+
+### Data types with functions
+    - Value types
+    - Reference types
